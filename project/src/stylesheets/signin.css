@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+.container {
+  background-color: white;
+  min-height: 100vh;
+  padding: 0 1.5rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem;
+}
+form > * {
+  margin: 1.2rem 0;
+  width: 100%;
+}
+form > label {
+  position: relative;
+}
+.signin-input {
+  border: none;
+  border-bottom: 1px solid #bbb;
+  padding: .5em 0;
+  width: 100%;
+  background-color: white;
+  position: relative;
+  z-index: 2;
+}
+.signin-input::placeholder {
+  color: #bbb;
+}
+.signin-input:focus {
+  outline: none;
+  border-bottom: 1px solid black;
+}
+.signin-input.error {
+  border-bottom: 1px solid #dc3545
+}
+.error-message {
+  font-size: .8rem;
+  color: #dc3545;
+  padding: .5em 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 0;
+  animation: error-animation .5s forwards;
+}
+form > button {
+  border: none;
+  background-color: #5dbebb;
+  color: white;
+  padding: .8rem 0;
+  border-radius: 3px;
+  font-weight: bold;
+}
+.btn-container {
+  display: flex;
+  justify-content: space-around;
+}
+.btn-container > button {
+  border: none;
+  background-color: inherit;
+  border-radius: 3px;
+  color: #888
+}
+button {
+  cursor: pointer;
+}
+@keyframes error-animation {
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
