@@ -1,10 +1,35 @@
-//- 메인페이지
-doctype html
-html(lang='ko')
-  head
-    meta(charset='utf-8') 
-    meta(http-equiv='X-UA-Compatible' content="IE=edge")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title='메인페이지'
-  body 
-    div 메인페이지
+extends layout.pug
+
+block title
+  title= '배민 상회'
+
+block content
+  section(class="header") My배민
+  section(class="top")
+    img(src="")
+    div(class="login-wrap")
+      div(class="avatar")
+      div(id="loginText" class="login rightArrow")
+    div(class="icons")
+
+      ul
+      -for(let i = 0; i < 6; i++)ls
+        li(class="icon-wrap")
+          img(src="" class="icon")
+          div(class="icon-name")
+
+  section(class="baemingreen")
+    div
+      img(src="" class="icon")
+      div(class="green-text rightArrow")
+  section(class="bottom")
+
+    -for(let i = 0; i < 8; i++)
+      div(class="buttonWrap rightArrow")
+        div(class="title")
+
+    div(class="buttonWrap")
+      div(class="title") 현재 버전 11.1.1
+  section(class="footer")
+    div(class="copyright") Copyright Woowa Bothers in Song-pz, All Rights Reserved.
+

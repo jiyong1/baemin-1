@@ -1,7 +1,16 @@
-export function SignUpApi(req, _) {
+const Datastore = require('nedb');
 
+const db = new Datastore({filename: './data/uesr.db', autoload: true})
+
+
+function SignUpApi (req, res) {
 }
 
-export function SignInApi(req, _) {
 
+function SignInApi (req, res) {
+}
+
+module.exports = {
+  SignUpApi,
+  SignInApi
 }
