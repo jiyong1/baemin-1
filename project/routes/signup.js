@@ -61,7 +61,7 @@ router.post('/', async (req, res) => {
     if(!userData[info]) 
       return res.status(400).json({message: "올바르지 않은 데이터입니다."})
   }
-  const idCount = await db.asyncCount({id : userData.id})
+  const idCount = await db.asyncCount({email : userData.email})
   if (idCount) {
     return res.status(406).json({message: '중복된 아이디 입니다.'});
   }
