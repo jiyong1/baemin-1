@@ -18,25 +18,6 @@ form > * {
 form > label {
   position: relative;
 }
-.signin-input {
-  border: none;
-  border-bottom: 1px solid #bbb;
-  padding: .5em 0;
-  width: 100%;
-  background-color: white;
-  position: relative;
-  z-index: 2;
-}
-.signin-input::placeholder {
-  color: #bbb;
-}
-.signin-input:focus {
-  outline: none;
-  border-bottom: 1px solid black;
-}
-.signin-input.error {
-  border-bottom: 1px solid #dc3545
-}
 .error-message {
   font-size: .8rem;
   color: #dc3545;
