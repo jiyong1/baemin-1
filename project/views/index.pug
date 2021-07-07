@@ -12,7 +12,7 @@ block content
       .login-wrap.rightArrow
         .avatar
           img(src='/images/avatar.png')
-        div#loginText.login 로그인해주세요
+        div#loginText.login= nickname
     .icons
       ul
         - const items = [{src:'/images/point.png', text:'포인트'},{src:'/images/coupon.png', text:'쿠폰함'},{src:'/images/present.png', text:'선물함'},{src:'/images/cart.png', text:'찜'},{src:'/images/order.png', text:'주문내역'},{src:'/images/review.png', text:'리뷰관리'}];
