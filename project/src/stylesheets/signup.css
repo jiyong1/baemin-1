@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+.container {
+  background-color: white;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: 0 1.5rem;
+}
+header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.header-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.back-btn {
+  left: 0;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+.input-label {
+  padding: .5em 0;
+}
