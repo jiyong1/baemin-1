@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+}
 .container {
   background-color: white;
   min-height: 100vh;
@@ -39,6 +42,7 @@ form > button {
 .btn-container {
   display: flex;
   justify-content: space-around;
+  margin-bottom: 10rem;
 }
 .btn-container > button {
   border: none;
@@ -48,6 +52,35 @@ form > button {
 }
 button {
   cursor: pointer;
+}
+.oauth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: .8rem;
+}
+.oauth-container > p {
+  margin: 1em 0;
+}
+.oauth-container > a:not(.signup-link) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  width: 100%;
+  height: 3em;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: .5em 0;
+}
+.oauth-container > a > * {
+  margin: .5em;
+}
+.oauth-container > a > img {
+  width: .8em;
+}
+.signup-link {
+  color: #5dbebb
 }
 @keyframes error-animation {
   0% {
