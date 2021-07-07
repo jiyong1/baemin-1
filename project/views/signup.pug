@@ -1,10 +1,16 @@
 //- 회원정보입력 페이지
-doctype html
-html(lang='ko')
-  head
-    meta(charset='utf-8') 
-    meta(http-equiv='X-UA-Compatible' content="IE=edge")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title='회원가입'
-  body 
-    div 회원가입
+extends layout.pug 
+
+block append css
+  link(rel="stylesheet", href="/stylesheets/input.css")
+  link(rel="stylesheet", href="/stylesheets/signup.css")
+
+block content 
+  header 
+    h1 회원가입
+    button(class="back-btn header-btn"): i 뒤로
+  div(id="signup-container")
+    include phone.pug
+
+block script
+  script(src="/scripts/signup.js" type="module") 
