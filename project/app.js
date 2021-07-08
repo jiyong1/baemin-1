@@ -1,8 +1,9 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-
+require("dotenv").config();
 const routers = require('./routes')
+
 
 const app = express();
 const port = 3000;

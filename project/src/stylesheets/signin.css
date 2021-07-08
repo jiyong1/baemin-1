@@ -21,16 +21,6 @@ form > * {
 form > label {
   position: relative;
 }
-.error-message {
-  font-size: .8rem;
-  color: #dc3545;
-  padding: .5em 0;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 0;
-  animation: error-animation .5s forwards;
-}
 form > button {
   border: none;
   background-color: #5dbebb;
@@ -81,12 +71,4 @@ button {
 }
 .signup-link {
   color: #5dbebb
-}
-@keyframes error-animation {
-  0% {
-    transform: translate3d(0, -100%, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
 }
