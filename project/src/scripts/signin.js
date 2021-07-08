@@ -1,5 +1,6 @@
 function signIn() {
   const $form = document.querySelector('form');
+  const $closeBtn = document.querySelector(".close-btn");
 
   function removeErrorMessage(elem) {
     const labelNode = elem.parentNode;
@@ -58,5 +59,8 @@ function signIn() {
     }
   }
   $form.addEventListener('submit', formSubmit);
+  $closeBtn.addEventListener("click", () => {
+    window.location.href = "/";
+  })
 }
 document.addEventListener('DOMContentLoaded', signIn);

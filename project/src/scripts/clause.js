@@ -107,11 +107,14 @@ export default function () {
 
   const nextBtnToggle = () => {
     const requiredCheckBoxes = [];
-    this.checkItems.filter(item => {
+    let allCheck = true;
+    this.checkItems.forEach(item => {
       if (item.input.classList.contains('required')) {
         requiredCheckBoxes.push(item.input);
       }
+      if (!item.input.checked) allCheck = false;
     });
+    this.allCheck.checked = allCheck;
     for (let i=0; i<requiredCheckBoxes.length; i++) {
       if (!requiredCheckBoxes[i].checked) {
         this.clauseNextBtn.disabled = true;
@@ -128,14 +131,15 @@ export default function () {
   }
 
   this.checkItems.forEach(item => {
-    if (item.input.classList.contains('required')) {
-      item.input.addEventListener('change', nextBtnToggle);
-    }
+    item.input.addEventListener('change', nextBtnToggle);
   })
   this.allCheck.addEventListener('change', toggleAllCheckBox);
 
   this.init = (info) => {
     if (!info || !info.checkCount || !info.overFourteen) return
+    if (info.checkCount === 4) {
+      this.allCheck.checked = true;
+    }
     this.checkItems.forEach((item, idx) => {
       let flag = false;
       if (item.input.classList.contains('required')) {
