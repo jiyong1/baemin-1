@@ -2,7 +2,7 @@ import label from './label.js';
 import Label from './label.js';
 import setAttrs from './setatt.js';
 
-export default function () {
+export default function (validEvent) {
   this.container = document.createElement("div");
   this.container.classList.add("userinfo-container","input-container");
   
@@ -34,16 +34,34 @@ export default function () {
   //이메일 중복검사 체크 확인
   this.confirmEmailBtn.addEventListener('click',(e) => emailRegex(e))
   this.duplicateWrap.appendChild(this.confirmEmailBtn);
-
+  
   //이메일 라벨 추가
   this.container.appendChild(this.duplicateWrap);
+
+  this.bottomLabelsWrap = document.createElement('div')
+  this.bottomLabelsWrap.classList.add('bottom-labels-wrap', 'display-none')
+
   let _labels = ['password', 'nickname', 'brith'];
   _labels.forEach(a => {
-    this.container.appendChild(labels[a].node());
+    this.bottomLabelsWrap.appendChild(labels[a].node());
   })
+  this.container.appendChild(this.bottomLabelsWrap)
 
   this.node = () => {return this.container};
   this.init = () => {};
+  
+  for(let [_, value] of Object.entries(labels)) {
+    value.input.addEventListener('input', () => {
+      const $checks = document.querySelectorAll('.input-label .check-icon.correct');
+      const $inputs = document.querySelectorAll('.input-label input');
+      
+      if($checks.length == 3 && $inputs[$inputs.length - 1].value.length > 9){
+        this.container.parentNode.dispatchEvent(validEvent);
+      }
+    })
+  }
+
+  
 }
 
 //공용함수
@@ -60,9 +78,9 @@ function passwordValidator(pw) {
   if (smaeCountRe.test(pw)) return false; //같은 숫자 3개
   if (pw.length < 10) return false;
 
-  let numArr = pw.match(/\d{3,}/g) || '';
+  let numArr = pw.match(/\d{3,}/g) || [];
 
-  for (a of numArr) {
+  for (let a of numArr) {
     let preNumber = +a[0];
     let upperCount = 1;
     let lowerCount = 1;
@@ -107,6 +125,7 @@ function renderError(elem, message) {
   elem.parentNode.appendChild(pElem);
 }
 
+
 //이벤트 함수
 function emailRegex(e) {
   let regex = /([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/;
@@ -119,13 +138,13 @@ function emailRegex(e) {
   if (!regex.test($email.value)) {
     renderError($email, '올바른 이메일 주소를 입력해주세요');
     $email.classList.add('error');
-    console.log($checkIcon)
     $checkIcon?.classList.remove('correct');
   } else {
     removeErrorMessage($email);
     $checkIcon?.classList.add('correct');
     e.target.setAttribute('disabled', true);
     $email.setAttribute('readonly', true);
+    document.querySelector('.bottom-labels-wrap').classList.remove('display-none');
   }
 }
   
@@ -140,11 +159,15 @@ function nickNameEvent(e) {
 function passwordEvent(e) {
   const $pw = e.target;
   let $checkIcon = '';
+  
   for (let $node of $pw.parentNode.childNodes) {
     if ($node.classList.contains('check-icon')) $checkIcon = $node;
   }
 
   if (!passwordValidator(e.target.value)) {
+    if ($pw.parentNode.lastChild.classList.contains("error-message")) {
+      return;
+    }
     renderError($pw, '10자 이상 영어 대문자, 소문자, 숫자, 특수문자 중 2종류를 조합해야 합니다');
     $pw.classList.add('error');
     $checkIcon?.classList.remove('correct');
@@ -158,5 +181,5 @@ function brithEvent(e) {
   let $brith = e.target;
   $brith.value = $brith.value.slice(0, 10);
   $brith.value = $brith.value.replace(/[^0-9.]/g, '');
-  $brith.value = $brith.value.replace(/(\d{4})(\d{2})(\d{2})/, '$1.$2.$3');
+  $brith.value = $brith.value.replace(/(\d{4})(\d{2})(\d{1})/, '$1.$2.$3');
 }
