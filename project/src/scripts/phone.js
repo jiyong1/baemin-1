@@ -11,8 +11,8 @@ export default function () {
 
     return randomNum;
   }
-  const phoneValueChange = (e) => {
-    const charArr = e.target.value.split('');
+  const phoneValueChange = (node) => {
+    const charArr = node.value.split('');
     const numArr = charArr.filter(char => {
       if (+char || char === "0") return true;
       else return false;
@@ -31,7 +31,7 @@ export default function () {
       if ((idx === 3)||(idx === 6 && length !== 11)||(idx===7 && length === 11)) plusChar = '-' + plusChar;
       return prestr + plusChar
     }, '')
-    e.target.value = resultValue;
+    node.value = resultValue;
   }
 
   const phoneAuthBtnClickHandler = () => {
@@ -54,7 +54,6 @@ export default function () {
     const randomNumPush = () => {
       const randomNum = randomNumGenerator();
       setTimeout(() => {
-        console.log(this.authNumLabel.input);
         this.authNumLabel.input.value = randomNum;
       }, 2000)
     }
@@ -64,14 +63,31 @@ export default function () {
   }
   this.wrapper = document.createElement("div");
   this.wrapper.setAttribute("class", "input-container");
-  this.label = new Label("휴대전화", phoneValueChange, "text");
+  this.label = new Label("휴대전화", (e) => {phoneValueChange(e.target)}, "text");
   this.authBtn = document.createElement("button");
   this.authBtn.setAttribute("class", "phone-auth-btn");
   this.authBtn.innerText = "인증번호 받기";
+  this.authBtn.disabled = true;
   this.authBtn.addEventListener("click", phoneAuthBtnClickHandler);
   this.wrapper.appendChild(this.label.node());
   this.wrapper.appendChild(this.authBtn);
 
+  this.init = (info) => {
+    if (!info || !info.phone) return;
+    this.label.input.value = info.phone;
+    phoneValueChange(this.label.input);
+  }
+  this.getState = () => {
+    const charArr = this.label.input.value.split('');
+    const numArr = charArr.filter(char => {
+      if (+char || char === "0") return true;
+      else return false;
+    })
+    const phone = numArr.join('');
+    return {
+      phone
+    }
+  }
   this.node = () => { return this.wrapper };
 
 }

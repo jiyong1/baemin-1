@@ -75,6 +75,7 @@
   visibility: hidden;
 }
 .clause-container .radioWrap label .redioImg {
+  min-width: 30px;
   cursor: pointer;
   position: relative;
   width: 30px;

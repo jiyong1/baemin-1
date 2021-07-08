@@ -134,5 +134,37 @@ export default function () {
   })
   this.allCheck.addEventListener('change', toggleAllCheckBox);
 
+  this.init = (info) => {
+    if (!info || !info.checkCount || !info.overFourteen) return
+    this.checkItems.forEach((item, idx) => {
+      let flag = false;
+      if (item.input.classList.contains('required')) {
+        flag = true;
+      } else {
+        if (idx === 3 && (info.checkCount === 2 || info.checkCount === 4)) {
+          flag = true;
+        } else if (idx === 4 && (info.checkCount === 3 || info.checkCount === 4)) {
+          flag = true;
+        }
+      }
+      item.input.checked = flag;
+    })
+    if (info.overFourteen === "over") this.radioInputOver.checked = true;
+    else this.radioInputUnder.checked = true;
+    nextBtnToggle();
+  };
+  this.getState = () => {
+    let checkCount = 1;
+    if (this.checkItems[3].input.checked) checkCount += 1;
+    if (this.checkItems[4].input.checked) checkCount += 2;
+    let overFourteen;
+    if (this.radioInputOver.checked) overFourteen = "over";
+    else overFourteen = "nonOver";
+    return {
+      checkCount,
+      overFourteen
+    }
+  }
   this.node = () => { return this.wrapper }
+  this.nextBtn = () => { return this.clauseNextBtn }
 }
