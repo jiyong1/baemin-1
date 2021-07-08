@@ -1,3 +1,4 @@
+import label from './label.js';
 import Label from './label.js';
 import setAttrs from './setatt.js';
 
@@ -16,6 +17,8 @@ export default function () {
   labels.email.input.removeEventListener('keyup', ()=>{});
   //생년월일 인풋 placeholder
   labels.brith.input.setAttribute('placeholder', '예) 2000.01.01')
+  //생년월일 체크아이콘 제거
+  labels.brith.checkIcon.remove();
 
   //이메일 중복확인 Wrap
   this.duplicateWrap = document.createElement("div");

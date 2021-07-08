@@ -16,7 +16,7 @@ function signIn() {
     elem.parentNode.appendChild(pElem);
   }
   
-  function formSubmit(e) {
+  async function formSubmit(e) {
     e.preventDefault();
     const $idElem = e.target.login_id;
     const $pwElem = e.target.login_pw;
@@ -33,6 +33,28 @@ function signIn() {
     } else {
       removeErrorMessage($pwElem);
       $pwElem.classList.remove('error');
+    }
+    if($idElem.value.length && $pwElem.value.length) {
+      const data = {
+        email : $idElem.value,
+        pw : $pwElem.value
+      }
+      try {
+        let res = await fetch('/signin', {
+          method : "POST",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        })
+        res = await res.json()
+        if(!!!res.url) throw res
+        window.location.replace(res.url);    
+            
+      } catch (error) {
+        console.error(error)
+        alert(error.message)
+      }
     }
   }
   $form.addEventListener('submit', formSubmit);
