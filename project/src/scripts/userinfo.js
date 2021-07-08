@@ -49,7 +49,15 @@ export default function (validEvent) {
 
   this.node = () => {return this.container};
   this.init = () => {};
-  
+  this.getState = () => {
+    return {
+      "email": labels.email.input.value,
+      "pw": labels.password.input.value,
+      "nickname": labels.nickname.input.value,
+      "birth": labels.brith.input.value
+    }
+  };
+
   for(let [_, value] of Object.entries(labels)) {
     value.input.addEventListener('input', () => {
       const $checks = document.querySelectorAll('.input-label .check-icon.correct');
