@@ -2,6 +2,31 @@ import Clause from './clause.js';
 import Phone from './phone.js';
 import UserInfo from './userinfo.js';
 
+async function apiSignUp(info) {
+  const url = "http://localhost:3000/signup";
+  try {
+    let res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(info)
+    });
+    if (res.status === 200) {
+      alert("회원가입이 완료되었습니다.");
+      window.location.replace(res.url);
+    } else if (res.status === 400) {
+      res = await res.json();
+      throw new Error(res.message);
+    } else {
+      throw new Error(res.status);
+    }
+    
+  } catch(error) {
+    alert(error.message);
+  }
+}
+
 function signUp() {
   const rootContainer = document.querySelector("#signup-container");
   const headerNextBtn = document.querySelector(".right-btn");
@@ -36,6 +61,11 @@ function signUp() {
   function goNext() {
     setState(currentObj.getState());
     level++;
+    if (level === 3) {
+      level--;
+      apiSignUp(historyInfo);      
+      return;
+    }
     render();
   }
   function goBack() {
