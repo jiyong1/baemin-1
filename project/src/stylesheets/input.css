@@ -63,7 +63,7 @@ button:disabled {
 }
 .error-message {
   font-size: .8rem;
-  color: #dc3545;
+  color: #dc3545 !important;
   padding: .5em 0;
   position: absolute;
   top: 100%;

@@ -53,6 +53,7 @@ section.top .login-wrap .logout:focus {
   outline:none;
 }
 section.top .login-wrap .logout {
+  cursor: pointer;
   background: none;
   padding: 0;
   border: 0;
