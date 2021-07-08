@@ -6,6 +6,7 @@ function signUp() {
   const rootContainer = document.querySelector("#signup-container");
   const headerNextBtn = document.querySelector(".right-btn");
   const headerPrevBtn = document.querySelector(".back-btn");
+  const nextEvent = new CustomEvent("validNext");
   let currentObj;
   let level = 0;
   let historyInfo;
@@ -45,11 +46,12 @@ function signUp() {
 
   function render(isRight=true) {
     window.scrollTo(0, 0);
-    currentObj = new pageInfo[level].renderObj();
+    currentObj = new pageInfo[level].renderObj(nextEvent);
     currentObj.init(historyInfo);
     if (pageInfo[level].useHeaderBtn) {
       headerNextBtn.innerText = pageInfo[level].headerBtnText;
       headerNextBtn.style.display = "block";
+      headerNextBtn.disabled = true;
     } else {
       headerNextBtn.style.display = "none";
       currentObj.nextBtn().addEventListener('click', goNext);
@@ -83,6 +85,11 @@ function signUp() {
   }
   render();
 
+  rootContainer.addEventListener("validNext", () => {
+    if (pageInfo[level].useHeaderBtn) {
+      headerNextBtn.disabled = false;
+    }
+  })
   headerNextBtn.addEventListener("click", goNext);
   headerPrevBtn.addEventListener("click", goBack);
 }

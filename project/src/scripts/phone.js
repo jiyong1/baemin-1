@@ -1,6 +1,6 @@
 import Label from './label.js';
 
-export default function () {
+export default function (validEvent) {
   function randomNumGenerator() {
     let randomNum = parseInt(Math.random() * (9999 - 1) + 1);
 
@@ -23,8 +23,10 @@ export default function () {
     }
     if (numArr.length >= 10) {
       this.authBtn.disabled = false;
+      this.label.checkIcon.classList.add("correct");
     } else {
       this.authBtn.disabled = true;
+      this.label.checkIcon.classList.remove("correct");
     }
     const resultValue = numArr.reduce((prestr, numChar, idx, { length }) => {
       let plusChar = numChar
@@ -55,6 +57,7 @@ export default function () {
       const randomNum = randomNumGenerator();
       setTimeout(() => {
         this.authNumLabel.input.value = randomNum;
+        this.wrapper.parentNode.dispatchEvent(validEvent);
       }, 2000)
     }
     randomNumPush();
@@ -62,7 +65,7 @@ export default function () {
     this.reAuthButton.addEventListener('click', randomNumPush);
   }
   this.wrapper = document.createElement("div");
-  this.wrapper.setAttribute("class", "input-container");
+  this.wrapper.setAttribute("class", "input-container phone-container");
   this.label = new Label("휴대전화", (e) => {phoneValueChange(e.target)}, "text");
   this.authBtn = document.createElement("button");
   this.authBtn.setAttribute("class", "phone-auth-btn");
