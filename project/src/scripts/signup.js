@@ -1,5 +1,6 @@
 import Clause from './clause.js';
 import Phone from './phone.js';
+import UserInfo from './userinfo.js';
 
 function signUp() {
   const rootContainer = document.querySelector("#signup-container");
@@ -18,6 +19,7 @@ function signUp() {
     {
       useHeaderBtn: true,
       headerBtnText: "완료",
+      renderObj: UserInfo
     },
   ]
   // const phone = new Phone();
