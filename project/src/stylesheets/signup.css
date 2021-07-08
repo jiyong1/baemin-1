@@ -7,12 +7,18 @@
   min-height: 100vh;
   padding: 0 1.5rem;
 }
-.signup-container {
+.slide-container {
+  width: 100%;
+  overflow: hidden;
+}
+#signup-container {
   display: flex;
+  width: 100%;
   transition: .5s;
 }
-.signup-container > * {
+#signup-container > * {
   width: 100%;
+  flex-shrink: 0;
 }
 header {
   position: relative;

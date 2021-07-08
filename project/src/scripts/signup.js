@@ -4,8 +4,11 @@ import UserInfo from './userinfo.js';
 
 function signUp() {
   const rootContainer = document.querySelector("#signup-container");
-  const headerNextBtn = document.querySelector(".right-btn")
+  const headerNextBtn = document.querySelector(".right-btn");
+  const headerPrevBtn = document.querySelector(".back-btn");
+  let currentObj;
   let level = 0;
+  let historyInfo;
   const pageInfo = [
     {
       useHeaderBtn: false,
@@ -21,20 +24,67 @@ function signUp() {
       headerBtnText: "완료",
       renderObj: UserInfo
     },
-  ]
-  // const phone = new Phone();
+  ];
   
-  function render() {
+  function setState(info) {
+    historyInfo = {
+      ...historyInfo,
+      ...info
+    }
+  }
+  function goNext() {
+    setState(currentObj.getState());
+    level++;
+    render();
+  }
+  function goBack() {
+    level --;
+    if (level < 0) history.back();
+    render(false);
+  }
+
+  function render(isRight=true) {
+    window.scrollTo(0, 0);
+    currentObj = new pageInfo[level].renderObj();
+    currentObj.init(historyInfo);
     if (pageInfo[level].useHeaderBtn) {
       headerNextBtn.innerText = pageInfo[level].headerBtnText;
       headerNextBtn.style.display = "block";
     } else {
       headerNextBtn.style.display = "none";
+      currentObj.nextBtn().addEventListener('click', goNext);
     }
-    const currentObj = new pageInfo[level].renderObj();
-    rootContainer.appendChild(currentObj.node());
+    if (rootContainer.hasChildNodes()) {
+      // slide
+      if (isRight) {
+        rootContainer.appendChild(currentObj.node());
+        rootContainer.style.transform = "translate3D(-100%, 0 , 0)";
+        setTimeout(() => {
+          rootContainer.removeChild(rootContainer.firstChild);
+          rootContainer.setAttribute("style", "transition: none;");
+          setTimeout(() => {
+            rootContainer.removeAttribute("style");
+          }, 100)
+        }, 600);
+      } else {
+        rootContainer.style.transition = "none";
+        rootContainer.insertBefore(currentObj.node(), rootContainer.firstChild);
+        rootContainer.style.transform = "translate3D(-100%, 0 , 0)";
+        setTimeout(() => {
+          rootContainer.removeAttribute("style");
+          setTimeout(() => {
+            rootContainer.removeChild(rootContainer.lastChild);
+          }, 600);
+        }, 0);
+      }
+    } else {
+      rootContainer.appendChild(currentObj.node());
+    }
   }
   render();
+
+  headerNextBtn.addEventListener("click", goNext);
+  headerPrevBtn.addEventListener("click", goBack);
 }
 
 document.addEventListener("DOMContentLoaded", signUp);

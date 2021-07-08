@@ -16,6 +16,13 @@ export default function (ptext, check=false, type="text", erase=true) {
     this.inputEraseBtn = document.createElement('button');
     this.inputEraseBtn.setAttribute("class", "input-erase-btn");
     this.inputEraseBtn.innerHTML = `<i class="fas fa-times">`;
+    this.inputEraseBtn.style.display = "none";
+    this.input.addEventListener("focus", () => {
+      this.inputEraseBtn.style.display = "block";
+    });
+    this.input.addEventListener("blur", () => {
+      this.inputEraseBtn.style.display = "none";
+    })
     this.inputEraseBtn.addEventListener('click', () => {
       this.input.value = "";
     });
