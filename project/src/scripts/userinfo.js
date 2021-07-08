@@ -40,6 +40,7 @@ export default function () {
   })
 
   this.node = () => {return this.container};
+  this.init = () => {};
 }
 
 //공용함수
