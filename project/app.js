@@ -23,6 +23,7 @@ app.use(session({
 app.use('/', routers.main);
 app.use('/signin', routers.signin);
 app.use('/signup', routers.signup);
+app.use('/logout', routers.logout);
 
 // 404
 app.use((req, res, next) => {
