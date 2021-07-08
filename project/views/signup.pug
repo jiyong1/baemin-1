@@ -2,15 +2,18 @@
 extends layout.pug 
 
 block append css
-  link(rel="stylesheet", href="/stylesheets/input.css")
-  link(rel="stylesheet", href="/stylesheets/signup.css")
+  link(rel="stylesheet" href="/stylesheets/input.css")
+  link(rel="stylesheet" href="/stylesheets/signup.css")
+  link(rel='stylesheet' href='/stylesheets/clause.css')
 
 block content 
   header 
     h1 회원가입
     button(class="back-btn header-btn"): i 뒤로
   div(id="signup-container")
+    include clause.pug
     include phone.pug
 
 block script
   script(src="/scripts/signup.js" type="module") 
+  script(src="/scripts/clause.js" type="module") 
