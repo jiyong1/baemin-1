@@ -1,12 +1,13 @@
-
 .input-label {
   position: relative;
+  display: flex;
+  flex-direction: column-reverse;
   margin: 1rem 0;
 }
 .signin-input {
   border: none;
   border-bottom: 1px solid #bbb;
-  padding: .5em 0;
+  padding: 0.5em 0;
   width: 100%;
   background-color: white;
   position: relative;
@@ -19,19 +20,25 @@
   outline: none;
   border-bottom: 1px solid black;
 }
+.signin-input + p {
+  color: #999;
+}
+.signin-input:focus + p {
+  color: #333;
+}
 .signin-input.error {
-  border-bottom: 1px solid #dc3545
+  border-bottom: 1px solid #dc3545;
 }
 .input-label-p {
-  padding: .5em 0;
+  padding: 0.5em 0;
 }
 .input-erase-btn {
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  right: .5em;
-  bottom: .5em;
+  right: 0.5em;
+  bottom: 0.5em;
   z-index: 3;
   width: 1.7em;
   height: 1.7em;
