@@ -63,14 +63,14 @@ router.post('/', async (req, res) => {
   }
   const idCount = await db.asyncCount({email : userData.email})
   if (idCount) {
-    return res.status(406).json({message: '중복된 아이디 입니다.'});
+    return res.status(400).json({message: '중복된 아이디 입니다.'});
   }
   const nickCount = await db.asyncCount({nickname: userData.nickname});
   if (nickCount) {
-    return res.status(406).json({message: '중복된 닉네임 입니다.'});
+    return res.status(400).json({message: '중복된 닉네임 입니다.'});
   }
   if (!passwordValidator(userData.pw)) {
-    return res.status(406).json({message: '올바르지 않은 비밀번호 형식입니다.'});
+    return res.status(400).json({message: '올바르지 않은 비밀번호 형식입니다.'});
   }
 
   userData.pw = await bcrypt.hash(userData.pw, 10);
