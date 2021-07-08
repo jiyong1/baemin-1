@@ -3,7 +3,7 @@ import Phone from './phone.js';
 import UserInfo from './userinfo.js';
 
 async function apiSignUp(info) {
-  const url = "http://localhost:3000/signup";
+  const url = "/signup";
   try {
     let res = await fetch(url, {
       method: "POST",
