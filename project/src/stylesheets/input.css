@@ -48,6 +48,15 @@
   border-radius: 50%;
   color: white;
   cursor: pointer;
+  padding: 0;
+}
+.input-erase-btn > svg {
+  width: 100%;
+  height: 100%;
+}
+.input-erase-btn > svg > line {
+  stroke-width: 1rem;
+  stroke-linecap: round;
 }
 button:disabled {
   cursor: default;
