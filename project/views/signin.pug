@@ -1,10 +1,35 @@
 //- 로그인 페이지
-doctype html
-html(lang='ko')
-  head
-    meta(charset='utf-8') 
-    meta(http-equiv='X-UA-Compatible' content="IE=edge")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title='로그인'
-  body 
-    div 로그인
+extends layout.pug 
+block title 
+  title= "배달의 민족 | 로그인"
+block append css
+  link(rel="stylesheet", href="/stylesheets/input.css")
+  link(rel="stylesheet", href="/stylesheets/signin.css")
+
+block content
+  button.close-btn: i.fas.fa-times
+  .server-error-msg
+  form
+    label
+      input(type="text" class="signin-input" name="login_id" placeholder="아이디 또는 이메일")
+    label 
+      input(type="password" class="signin-input" name="login_pw" placeholder="비밀번호")
+    button(type="submit") 로그인
+  div(class="btn-container")
+    button 아이디 찾기
+    button 비밀번호 찾기
+  div(class="oauth-container")
+    a(href="#")
+      img(src="images/facebook.png")/
+      p 페이스북으로 로그인
+    a(href="#")
+      img(src="images/naver.png")/
+      p 네이버로 로그인
+    a(href="#")
+      img(src="images/apple.png")/
+      p Apple로 로그인
+    p 혹시, 배달의민족이 처음이신가요? 
+      a(href="signup" class="signup-link") 회원가입 
+
+block script
+  script(src="/scripts/signin.js") 

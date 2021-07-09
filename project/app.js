@@ -1,40 +1,40 @@
-const { SignUpApi, SignInApi } = require('./api/index.js');
 const path = require('path');
 const express = require('express');
+const session = require('express-session');
+require("dotenv").config();
+const routers = require('./routes')
+
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-app.set('views', path.join(__dirname, 'views'));
+app.use(express.json()) //post body read to json
 app.use(express.static(path.join(__dirname, 'src')));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// Views
-app.get('/', HomePage);
-app.get('/signin', SignInPage);
-app.get('/clause', ClausePage);
-app.get('/signup', SignUpPage);
 
-// Api 
-app.post('/signup-api', SignUpApi);
-app.post('/signup-api', SignInApi);
+app.use(session({
+  resave: false,
+  saveUninitialized :true,
+  secret: process.env.SECRET_KEY,
+}))
 
-function HomePage(_, res) {
-  res.render('index');
-}
+// router
+app.use('/', routers.main);
+app.use('/signin', routers.signin);
+app.use('/signup', routers.signup);
+app.use('/logout', routers.logout);
 
-function SignInPage(_, res) {
-  res.render('signin');
-}
-
-function ClausePage(_, res) {
-  res.render('clause');
-}
-
-function SignUpPage(_, res) {
-  res.render('signup');
-}
-
+// 404
+app.use((req, res, next) => {
+  const err = new Error("NOT FOUND");
+  err.status = 404;
+  next(err);
+});
+app.use((err, req, res, next) => {
+  res.render("error", {err})
+});
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);

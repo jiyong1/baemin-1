@@ -1,7 +1,14 @@
 {
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "nedb": "^1.8.0",
-    "pug": "^3.0.2"
+    "nedb-async": "^0.1.6",
+    "pug": "^3.0.2",
+  },
+  "scripts": {
+    "start" : "node app.js"
   }
 }

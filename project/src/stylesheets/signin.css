@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+.container {
+  background-color: white;
+  position: relative;
+  min-height: 100vh;
+  padding: 0 1.5rem;
+}
+.close-btn {
+  position: absolute;
+  top: 1.5rem;
+  border: none;
+  background-color: inherit;
+  font-size: 1.2rem;
+  padding: 0;
+}
+.server-error-msg {
+  padding-top: 5rem;
+  height: 2rem;
+  font-size: .8rem;
+  color: rgb(194, 9, 9);
+  text-align: center;
+}
+.server-error-msg.shake {
+  animation: shake 0.52s 1 cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+}
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+}
+form > * {
+  margin: 1.2rem 0;
+  width: 100%;
+}
+form > label {
+  position: relative;
+}
+form > button {
+  border: none;
+  background-color: #5dbebb;
+  color: white;
+  padding: .8rem 0;
+  border-radius: 3px;
+  font-weight: bold;
+}
+.btn-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10rem;
+}
+.btn-container > button {
+  border: none;
+  background-color: inherit;
+  border-radius: 3px;
+  color: #888
+}
+button {
+  cursor: pointer;
+}
+.oauth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: .8rem;
+}
+.oauth-container > p {
+  margin: 1em 0;
+}
+.oauth-container > a:not(.signup-link) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  width: 100%;
+  height: 3em;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: .5em 0;
+}
+.oauth-container > a > * {
+  margin: .5em;
+}
+.oauth-container > a > img {
+  width: .8em;
+}
+.signup-link {
+  color: #5dbebb
+}
