@@ -49,12 +49,19 @@ function signIn() {
           body: JSON.stringify(data)
         })
         res = await res.json()
-        if(!!!res.url) throw res
+        if(!!!res.url) {
+          const $errorMsg = document.querySelector('.server-error-msg');
+          $errorMsg.innerText = res.message;
+          $errorMsg.classList.add('shake');
+          setTimeout(() =>{
+            $errorMsg.classList.remove('shake');
+          },520)
+          throw res
+        }
         window.location.replace(res.url);    
             
       } catch (error) {
         console.error(error)
-        alert(error.message)
       }
     }
   }
