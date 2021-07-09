@@ -67,7 +67,7 @@
   "pug": "^3.0.2" // 템플릿
 ```
 
-## Interation Signup Page
+## CSR Signup Page
 <s style="color: #999">가장 열심히 만든 페이지</s>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/38929712/125015132-d99d6d80-e0a9-11eb-9d90-5f84b2acb8e1.gif" height=500>
