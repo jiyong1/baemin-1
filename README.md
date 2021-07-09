@@ -9,9 +9,7 @@
 
 <p align="center">
  <img alt="Pug" src ="https://img.shields.io/badge/pug-A86454?logo=Pug&logoColor=white"/>
- <img alt="Node.js" src ="https://img.shields.io/badge/Node.js
--339933?logo=Node.js
-&logoColor=white"/>
+ <img alt="Node.js" src ="https://img.shields.io/badge/Node.js-339933?logo=Node.js&logoColor=white"/>
  <img alt="CSS" src ="https://img.shields.io/badge/Express-000000?logo=Express&logoColor=white"/>
 </p>
 
