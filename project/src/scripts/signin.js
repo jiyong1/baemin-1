@@ -1,5 +1,6 @@
 function signIn() {
   const $form = document.querySelector('form');
+  const $closeBtn = document.querySelector(".close-btn");
 
   function removeErrorMessage(elem) {
     const labelNode = elem.parentNode;
@@ -16,7 +17,7 @@ function signIn() {
     elem.parentNode.appendChild(pElem);
   }
   
-  function formSubmit(e) {
+  async function formSubmit(e) {
     e.preventDefault();
     const $idElem = e.target.login_id;
     const $pwElem = e.target.login_pw;
@@ -34,7 +35,39 @@ function signIn() {
       removeErrorMessage($pwElem);
       $pwElem.classList.remove('error');
     }
+    if($idElem.value.length && $pwElem.value.length) {
+      const data = {
+        email : $idElem.value,
+        pw : $pwElem.value
+      }
+      try {
+        let res = await fetch('/signin', {
+          method : "POST",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        })
+        res = await res.json()
+        if(!!!res.url) {
+          const $errorMsg = document.querySelector('.server-error-msg');
+          $errorMsg.innerText = res.message;
+          $errorMsg.classList.add('shake');
+          setTimeout(() =>{
+            $errorMsg.classList.remove('shake');
+          },520)
+          throw res
+        }
+        window.location.replace(res.url);    
+            
+      } catch (error) {
+        console.error(error)
+      }
+    }
   }
   $form.addEventListener('submit', formSubmit);
+  $closeBtn.addEventListener("click", () => {
+    window.location.href = "/";
+  })
 }
 document.addEventListener('DOMContentLoaded', signIn);

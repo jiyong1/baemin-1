@@ -1,0 +1,64 @@
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.userinfo-container {
+  position: relative;
+}
+
+.userinfo-container .input-label .input-erase-btn {
+  display: none;
+  right: 1.5rem;
+}
+.userinfo-container .input-label:last-child .input-erase-btn {
+  display: none;
+  right: 0;
+}
+
+.userinfo-container .input-label .signin-input:focus + p + .input-erase-btn {
+  display: inline-block;
+}
+
+.userinfo-container .input-label .check-icon {
+  position: absolute;
+  z-index: 9;
+  color: #999;
+  right: 0rem;
+  bottom: 0.5rem;
+}
+.userinfo-container .input-label .check-icon.correct {
+  color: #26B5AD;
+}
+.duplicate-wrap {
+  display: grid;
+  font-size: 1rem;
+  grid-template-columns: 0.8fr 0.2fr;
+  column-gap: 0.8rem;
+}
+.duplicate-wrap label {
+  max-width: 100%;
+}
+.duplicate-wrap label input {
+  font-size: 1rem;
+}
+
+.duplicate-wrap .confirm-duplicate {
+  cursor: pointer;
+  font-size: clamp(11px, 3vw, 1rem);
+  height: fit-content;
+  margin: auto 0 1rem 0;
+  padding: 0.6em 0.8em 0.5em;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.duplicate-wrap .confirm-duplicate:focus {
+  outline: none;
+}

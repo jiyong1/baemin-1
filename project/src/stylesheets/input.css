@@ -1,0 +1,82 @@
+.input-label {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  margin: 1rem 0;
+}
+.signin-input {
+  border: none;
+  font-size: 1rem;
+  border-bottom: 1px solid #bbb;
+  padding: 0.5em 0;
+  width: 100%;
+  background-color: white;
+  position: relative;
+  z-index: 2;
+}
+.signin-input::placeholder {
+  color: #bbb;
+}
+.signin-input:focus {
+  outline: none;
+  border-bottom: 1px solid black;
+}
+.signin-input + p {
+  color: #999;
+}
+.signin-input:focus + p {
+  color: #333;
+}
+.signin-input.error {
+  border-bottom: 1px solid #dc3545;
+}
+.input-label-p {
+  padding: 0.5em 0;
+}
+.input-erase-btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0.5em;
+  bottom: 0.5em;
+  z-index: 3;
+  width: 1.7em;
+  height: 1.7em;
+  border: none;
+  background-color: #adb5bd;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+}
+.input-erase-btn > svg {
+  width: 100%;
+  height: 100%;
+}
+.input-erase-btn > svg > line {
+  stroke-width: 1rem;
+  stroke-linecap: round;
+}
+button:disabled {
+  cursor: default;
+}
+
+@keyframes error-animation {
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+.error-message {
+  font-size: .8rem;
+  color: #dc3545 !important;
+  padding: .5em 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 0;
+  animation: error-animation .5s forwards;
+}

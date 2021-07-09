@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+.container {
+  background-color: white;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: 0 1.5rem;
+}
+.slide-container {
+  width: 100%;
+  overflow: hidden;
+}
+#signup-container {
+  display: flex;
+  width: 100%;
+  transition: .5s;
+}
+#signup-container > * {
+  width: 100%;
+  flex-shrink: 0;
+}
+header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.bg-none-btn {
+  background-color: inherit;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+.header-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.header-btn i {
+  font-size: 1.2rem;
+}
+.back-btn {
+  left: 0;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+.phone-auth-btn {
+  background-color: inherit;
+  border: 1px solid #bbb;
+  margin: 3rem 0;
+  padding: 1em;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.re-auth-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.re-auth-btn {
+  color: #5dbebb;
+}
+.right-btn {
+  right: 0;
+}

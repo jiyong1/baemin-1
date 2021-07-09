@@ -1,0 +1,13 @@
+.phone-container .check-icon {
+  position: absolute;
+  z-index: 9;
+  color: #999;
+  right: 0rem;
+  bottom: 0.5rem;
+}
+.phone-container .check-icon.correct {
+  color: #26B5AD;
+}
+.phone-container .input-erase-btn {
+  right: 1.5rem;
+}
