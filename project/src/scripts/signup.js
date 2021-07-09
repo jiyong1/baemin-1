@@ -112,7 +112,7 @@ function signUp() {
     } else {
       rootContainer.appendChild(currentObj.node());
     }
-  }
+  } 
   render();
 
   rootContainer.addEventListener("validNext", () => {
